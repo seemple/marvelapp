@@ -1,8 +1,3 @@
-# Clase 2
+## Docker
 
-Fecha: Viernes 28
-
-## Temas
-
-1. Promises
-2. Docker
+[Docker](docs/docker.md)
