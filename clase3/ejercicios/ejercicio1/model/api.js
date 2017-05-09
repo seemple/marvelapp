@@ -23,3 +23,26 @@ exports.fetchCategories = () => {
     resolve(categories);
   }));
 };
+
+//Traigo la lista y obtengo la cantidad
+const categoriesList = {};
+fetchCategories().then(categories => categoriesList).catch(error);
+	
+exports.createCategory = (newCategory) =>{
+
+	let cantidad = categories.length;
+	
+	// Calculo el nuevo ID
+	newCategory.id = cantidad+1;
+	
+	// Guardarlo en el json
+	return new Promise((resolve,reject) => {
+		//Agregarlo a la lista con el ultimo id
+		categories.concat(newCategory);
+		if(error){
+			return reject(error);
+		}
+	// retornar el nuevo
+		resolve (newCategory);
+	});
+}
