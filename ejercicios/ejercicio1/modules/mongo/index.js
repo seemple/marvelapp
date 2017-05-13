@@ -49,16 +49,22 @@ const fetch = filename => {
 };
 
 const init = (type, file) => {
-  return collection(type).then(col => col.find().toArray()).then(elementsDB => {
-    if (!elementsDB.length) {
-      console.log(`MongoDB collection (${type}) not found, import...`);
-      return fetch(file).then(elements => {
-        return col.insertMany(elements);
-      });
-    }
-    console.log(`MongoDB collection (${type}) found...`);
-    return Promise.resolve();
-  });
+  let col = {};
+  return collection(type)
+    .then(coll => {
+      col = coll;
+      return col.find().toArray();
+    })
+    .then(elementsDB => {
+      if (!elementsDB.length) {
+        console.log(`MongoDB collection (${type}) not found, import...`);
+        return fetch(file).then(elements => {
+          return col.insertMany(elements);
+        });
+      }
+      console.log(`MongoDB collection (${type}) found...`);
+      return Promise.resolve();
+    });
 };
 
 const initBooks = () => init("books", booksFile);

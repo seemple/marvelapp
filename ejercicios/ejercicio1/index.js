@@ -22,6 +22,8 @@ const app = express();
 const routesCategories = require("./routes/categories");
 const routesBooks = require("./routes/books");
 const bodyParser = require("body-parser");
+const errorHandler = require("./modules/error-handler");
+const mongo = require("./modules/mongo");
 
 // Lo vemos en la próxima clase
 app.use(bodyParser.json());
@@ -45,4 +47,8 @@ app.put("/books/:id", routesBooks.update);
 app.patch("/books/:id", routesBooks.update);
 app.delete("/books/:id", routesBooks.remove);
 
-app.listen(3000, () => console.log("Example app listening on port 3000!"));
+app.use(errorHandler);
+
+mongo.init().then(() => {
+  app.listen(3000, () => console.log("Example app listening on port 3000!"));
+});
