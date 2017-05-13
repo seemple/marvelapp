@@ -24,17 +24,13 @@ const routesBooks = require("./routes/books");
 const bodyParser = require("body-parser");
 const errorHandler = require("./modules/error-handler");
 const mongo = require("./modules/mongo");
+const logBody = require("./modules/log-body");
 
-// Lo vemos en la próxima clase
 app.use(bodyParser.json());
 
-app.get("/categories", routesCategories.list);
-app.post("/categories", routesCategories.create);
-app.get("/categories/:id", routesCategories.get);
-// Por el momento vamos a usar el mismo método
-app.put("/categories/:id", routesCategories.update);
-app.patch("/categories/:id", routesCategories.update);
-app.delete("/categories/:id", routesCategories.remove);
+app.use(logBody);
+
+app.use("/categories", routesCategories);
 
 // Podemos filtrar por una o mas categorías
 // http://localhost:3000/books?q={"category": {"id":  "c8f5d5c9-b750-4ee2-a209-e0d4710c1976"}}
