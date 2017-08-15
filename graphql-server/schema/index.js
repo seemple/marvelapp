@@ -27,7 +27,7 @@ const queryType = new GraphQLObjectType({
       }
     },
     characters: {
-      type: characterConnection
+      type: new GraphQLList(characterType)
     },
     node: nodeField
   })

@@ -9,6 +9,7 @@ var marvel = api.createClient({
 
 
 const newBookId = () => 'BK-' + shortid.generate();
+const getAllCharacters = {};
 
 exports.add = book =>
   mongo.collection('books').then(col => {
@@ -28,9 +29,7 @@ exports.remove = id =>
 
 exports.getAll = () =>
 	marvel.characters.findAll(10)
-	  .then(res => {
-		  return res.data
-		  })
+	  .then(res => {return res})
 	  .catch(err => console.log(err))
 	  .done();
 

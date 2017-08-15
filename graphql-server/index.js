@@ -11,10 +11,7 @@ const connectionFromMongoCursor = require('relay-mongodb-connection');
 const queryResolver = {
   category: ({ id }) => model.category.getById(id),
   categories: () => model.category.getAll(),
-  characters: args =>
-    args.categoryId
-      ? model.character.getByCategoryId(args.categoryId).then(c => connectionFromMongoCursor(c, args))
-      : model.character.getAll(),
+  characters: () => model.character.getAll(),
   character: ({ id }) => model.character.getById(id)
 };
 

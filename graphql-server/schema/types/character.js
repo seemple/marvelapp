@@ -12,15 +12,18 @@ const characterType = new GraphQLObjectType({
   fields: () => ({
     id: {
       type: new GraphQLNonNull(GraphQLID),
-      description: 'The character unique id.'
+      description: 'The character unique id.',
+	  resolve: character => character.id
     },
     name: {
       type: GraphQLString,
-      description: 'The character name.'
+      description: 'The character name.',
+	  resolve: character => character.name
     },
     description: {
       type: GraphQLString,
-      description: 'The character description.'
+      description: 'The character description.',
+	  resolve: character => character.description
     },
     image: {
       type: GraphQLString,
