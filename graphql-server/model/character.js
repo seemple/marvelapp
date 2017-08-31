@@ -29,9 +29,8 @@ exports.remove = id =>
 
 exports.getAll = () =>
 	marvel.characters.findAll(10)
-	  .then(res => {return res})
-	  .catch(err => console.log(err))
-	  .done();
+	  .then(res => {return res.data})
+	  .catch(err => console.log(err));
 
 exports.getById = id =>
 	marvel.characters.find(id).then(res=> {return res.data})
