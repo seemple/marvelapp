@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, Icon, Image } from 'semantic-ui-react'
 import { createFragmentContainer, graphql} from "react-relay"
 
-const CardItem = () => (
+const CardItem = ({props}) => (
   <Card as="Grid.Column" width="3">
     <Image src={`/assets/images/avatar/large/${this.props.character.image}`} />
     <Card.Content>
@@ -27,8 +27,8 @@ const CardItem = () => (
   </Card>
 )
 
-export default createFragmentContainer(Card, graphql `
-fragment Card_card on Card{
+export default createFragmentContainer(CardItem, graphql `
+fragment card_character on character{
   id,
   name,
   description,

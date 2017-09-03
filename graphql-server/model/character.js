@@ -27,10 +27,12 @@ exports.remove = id =>
     return col.remove({ _id: id });
   });
 
-exports.getAll = () =>
-	marvel.characters.findAll(10)
-	  .then(res => {return res.data})
+exports.getAll = cant =>
+	marvel.characters.findAll(cant)
+	  .then(res => {console.log(res.data);return res.data})
 	  .catch(err => console.log(err));
 
 exports.getById = id =>
-	marvel.characters.find(id).then(res=> {return res.data})
+  marvel.characters.find(id)
+  .then(res=> {console.log(res.data);return res.data})
+  .catch(err => console.log(err));

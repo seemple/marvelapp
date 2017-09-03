@@ -1,0 +1,42 @@
+# Represents a category of books
+type Category implements Node {
+  # The category unique id.
+  id: ID!
+
+  # Category label.
+  label: String
+}
+
+# Represents a character of the Marvel Universe.
+type Character {
+  # The character unique id.
+  id: ID!
+
+  # The character name.
+  name: String
+
+  # The character description.
+  description: String
+
+  # The character image.
+  image: String
+}
+
+# An object with an ID
+interface Node {
+  # The id of the object.
+  id: ID!
+}
+
+type Query {
+  category(id: String!): Category
+  categories: [Category]
+  character(id: String!): Character
+  characters: [Character]
+
+  # Fetches an object given its ID
+  node(
+    # The ID of an object
+    id: ID!
+  ): Node
+}

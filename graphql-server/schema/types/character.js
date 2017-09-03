@@ -2,23 +2,23 @@ const { GraphQLObjectType, GraphQLString, GraphQLNonNull, GraphQLID, GraphQLList
 
 const { connectionDefinitions } = require('graphql-relay');
 
-const { categoryType } = require('./category');
 const { nodeInterface } = require('../node');
-const model = require('../../model');
 
 const characterType = new GraphQLObjectType({
   name: 'Character',
   description: 'Represents a character of the Marvel Universe.',
+  interfaces: [nodeInterface],
+  isTypeOf: obj => obj.id,
   fields: () => ({
     id: {
       type: new GraphQLNonNull(GraphQLID),
       description: 'The character unique id.',
-	  resolve: character => character.id
+	    resolve: character => character.id
     },
     name: {
       type: GraphQLString,
       description: 'The character name.',
-	  resolve: character => character.name
+	    resolve: character => character.name
     },
     description: {
       type: GraphQLString,

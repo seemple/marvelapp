@@ -1,4 +1,4 @@
-const { GraphQLObjectType, GraphQLList, GraphQLSchema, GraphQLString, GraphQLNonNull } = require('graphql');
+const { GraphQLObjectType, GraphQLList, GraphQLSchema, GraphQLInt, GraphQLString, GraphQLNonNull } = require('graphql');
 const { connectionArgs } = require('graphql-relay');
 const { categoryType } = require('./types/category');
 const { characterType, characterConnection } = require('./types/character');
@@ -22,12 +22,17 @@ const queryType = new GraphQLObjectType({
       type: characterType,
       args: {
         id: {
-          type: new GraphQLNonNull(GraphQLString)
+          type: new GraphQLNonNull(GraphQLInt)
         }
       }
     },
     characters: {
-      type: new GraphQLList(characterType)
+      type: new GraphQLList(characterType),
+      args: {
+        cant: {
+          type: GraphQLInt
+        }
+      }
     },
     node: nodeField
   })
